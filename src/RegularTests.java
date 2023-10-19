@@ -18,4 +18,23 @@ class RegularTests
         assertFalse(RegularJava.isAddress(ip));
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"e02fd0e4-00fd-090A-ca30-0d00a0038ba0",
+                            "3fa64133-487d-4930-ba79-204f7980bb4d",
+                            "4edc997d-7e50-4264-8933-7e8c5d40d0f5"})
+    void validGuid(String guid)
+    {
+        assertTrue(RegularJava.isGUID(guid));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"e02fd0e400fd090Aca300d00a0038ba0",
+                            "{e02fd0e4-00fd-090A-ca30-0d00a0038ba0",
+                            "3fa64133-487d-4930-ba79204f7980bb4d",
+                            "{3fa64133-487d-4930-ba79-204f7980bb4d",
+                            "4edc997d-7e50-4264-8933-7e8c5d40d0f5}"})
+    void invalidGuid(String guid) {
+        assertFalse(RegularJava.isGUID(guid));
+    }
+
 }

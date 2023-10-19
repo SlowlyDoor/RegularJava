@@ -21,9 +21,21 @@ public class RegularJava
             }
             return true;
         }
-        else
-            return false;
+        return false;
     }
 
+    public static boolean isGUID(String guid)
+    {
+        String pattern = "^\\{?[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\\}?$";
+
+        if (Pattern.matches(pattern, guid))
+        {
+            if (guid.charAt(0) == '{' && guid.charAt(guid.length()-1) == '}' ||
+                    guid.charAt(0) != '{' && guid.charAt(guid.length()-1) != '}')
+                return true;
+            return false;
+        }
+        return false;
+    }
 
 }
