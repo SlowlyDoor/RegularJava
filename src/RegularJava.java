@@ -8,7 +8,6 @@ public class RegularJava
         //Регулярное выражение
         String pattern = "^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}$";
 
-
         //Проверка октетов
         if (Pattern.matches(pattern, address))
         {
@@ -38,4 +37,19 @@ public class RegularJava
         return false;
     }
 
+    public static boolean isURL(String url)
+    {
+        Pattern patternAddress = Pattern.compile("\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}");
+        Matcher m = patternAddress.matcher(url);
+
+        // Ищет совпадения с патерном ip-адресса
+        if (m.find())
+            return false;
+        else
+        {
+            String pattern = "^(https?://)?([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9](\\.[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]+)+)(:[0-9]+)?(/[^?#]*)?(\\?[^#]*=.*)?(#.*)?$";
+
+            return Pattern.matches(pattern, url);
+        }
+    }
 }
