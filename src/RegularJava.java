@@ -3,6 +3,11 @@ import java.util.regex.Matcher;
 
 public class RegularJava
 {
+    /**
+     * Метод проверки айпи адрессов
+     * @param address - строка айпи адресса
+     * @return
+     */
     public static boolean isAddress(String address)
     {
         //Регулярное выражение
@@ -23,6 +28,11 @@ public class RegularJava
         return false;
     }
 
+    /**
+     * Метод проверки GUID строк
+     * @param guid - строка guid
+     * @return
+     */
     public static boolean isGUID(String guid)
     {
         String pattern = "^\\{?[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\\}?$";
@@ -37,9 +47,14 @@ public class RegularJava
         return false;
     }
 
+    /**
+     * Метод проверки URL строки
+     * @param url - url строка
+     * @return
+     */
     public static boolean isURL(String url)
     {
-        Pattern patternAddress = Pattern.compile("\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}");
+        Pattern patternAddress = Pattern.compile("^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}$");
         Matcher m = patternAddress.matcher(url);
 
         // Ищет совпадения с патерном ip-адресса
@@ -47,12 +62,18 @@ public class RegularJava
             return false;
         else
         {
-            String pattern = "^(https?://)?([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9](\\.[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]+)+)(:[0-9]+)?(/[^?#]*)?(\\?[^#]*=.*)?(#.*)?$";
+            String pattern = "^(https?://)?(www\\.)?((?!www\\b)[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9](\\.[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]+)+)(:[0-9]+)?(/[^?#]*)?(\\?[^#]*=.*)?(#.*)?$";
+
 
             return Pattern.matches(pattern, url);
         }
     }
 
+    /**
+     * Метод проверки корректного пароля
+     * @param password - пароль, вводящий пользователем
+     * @return
+     */
     public static boolean isCoolPassword(String password)
     {
         String pattern = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[\\W_])[A-Za-z\\d\\W_]{8,}$";

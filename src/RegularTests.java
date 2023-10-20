@@ -21,7 +21,10 @@ class RegularTests
     @ParameterizedTest
     @ValueSource(strings = {"e02fd0e4-00fd-090A-ca30-0d00a0038ba0",
                             "3fa64133-487d-4930-ba79-204f7980bb4d",
-                            "4edc997d-7e50-4264-8933-7e8c5d40d0f5"})
+                            "4edc997d-7e50-4264-8933-7e8c5d40d0f5",
+                            "{e02fd0e4-00fd-090A-ca30-0d00a0038ba0}",
+                            "{3fa64133-487d-4930-ba79-204f7980bb4d}",
+                            "{4edc997d-7e50-4264-8933-7e8c5d40d0f5}"})
     void validGUID(String guid)
     {
         assertTrue(RegularJava.isGUID(guid));
@@ -43,15 +46,15 @@ class RegularTests
                             "http://www.example.com:8080/path/to/resource?param=value#section",
                             "https://example.com/page#section",
                             "http://sub.domain.com",
-                            "https://example.com"
+                            "https://www.example.additional-domain.com:80/folder/chosen_fo?access=administrator&info=full#url5"
     })
     void validUrl(String url) {
         assertTrue(RegularJava.isURL(url));
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"Just Text",
-                            "http://a.com",
+    @ValueSource(strings = {"https://....exam...ple..com",
+                            "www.com",
                             "https://-example.com",
                             "http://example.com_underscore",
                             "http://example.com with spaces",
