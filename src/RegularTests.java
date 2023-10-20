@@ -61,4 +61,29 @@ class RegularTests
     {
         assertFalse(RegularJava.isURL(url));
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"P@ssw0r.d123",
+            "MyPas/sword_007",
+            "Str0n!gP@ssW0rd",
+            "AbcDef_1234",
+            "Secu\\re_P@ssw0r]d",
+            "P@ssw0rdZz_1"
+    })
+    void validPassword(String pw) {
+        assertTrue(RegularJava.isCoolPassword(pw));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"simple",
+                            "OnlyLettersNoDigits",
+                            "12345678",
+                            "NoUppercaseletters",
+                            "only_lowercase_no_digits",
+                            "LongEnoughButNoSpecialCharacter"
+    })
+    void invalidPassword(String pw)
+    {
+        assertFalse(RegularJava.isCoolPassword(pw));
+    }
 }

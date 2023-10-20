@@ -52,4 +52,11 @@ public class RegularJava
             return Pattern.matches(pattern, url);
         }
     }
+
+    public static boolean isCoolPassword(String password)
+    {
+        String pattern = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[\\W_])[A-Za-z\\d\\W_]{8,}$";
+
+        return Pattern.matches(pattern, password);
+    }
 }
